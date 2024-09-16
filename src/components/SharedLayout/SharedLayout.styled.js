@@ -57,9 +57,8 @@ export const MainContainer = styled.div`
 	padding-left: 64px;
 	padding-right: 64px;
 	padding-top: 120px;
-	background-image: ${(props) => `url(${props.image})`};
+	background-image: url(${(props) => props.image});
 	background-position: top 72px left 0;
 	background-repeat: no-repeat;
-	// background-size: 100% 100%;
 	height: 100vh;
 `;

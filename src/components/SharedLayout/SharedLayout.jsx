@@ -13,6 +13,8 @@ import {
 	LogoLink,
 } from "./SharedLayout.styled";
 
+import herobcg from "../../assets/hero/hero-background.png";
+
 const SharedLayout = () => {
 	const location = useLocation();
 	return (
@@ -35,13 +37,7 @@ const SharedLayout = () => {
 				</Nav>
 			</Header>
 			<main>
-				<MainContainer
-					image={
-						location.pathname === "/"
-							? "src/assets/hero/hero-background.png"
-							: null
-					}
-				>
+				<MainContainer image={location.pathname === "/" ? herobcg : null}>
 					<Outlet />
 				</MainContainer>
 			</main>
