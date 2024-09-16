@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Logo from "../IconComponents/Logo/Logo.jsx";
+import { useLocation } from "react-router-dom";
+import Logo from "../IconComponents/Logo";
 
 import {
 	Header,
@@ -10,10 +11,10 @@ import {
 	LinkWrapper,
 	Link,
 	LogoLink,
-	LogoText,
 } from "./SharedLayout.styled";
 
 const SharedLayout = () => {
+	const location = useLocation();
 	return (
 		<div>
 			<Header>
@@ -21,23 +22,26 @@ const SharedLayout = () => {
 					<Container>
 						<NavWrapper>
 							<LogoLink to="/">
-								<LogoText>Travel</LogoText>
-								<Logo width={"30"} height={"30"} />
-								<LogoText>Trucks</LogoText>
+								<Logo />
 							</LogoLink>
 							<LinkWrapper>
 								<Link to="/" end>
 									Home
 								</Link>
 								<Link to="/catalog">Catalog</Link>
-								<Link to="/favorites">Favorites</Link>
 							</LinkWrapper>
 						</NavWrapper>
 					</Container>
 				</Nav>
 			</Header>
 			<main>
-				<MainContainer>
+				<MainContainer
+					image={
+						location.pathname === "/"
+							? "src/assets/hero/hero-background.png"
+							: null
+					}
+				>
 					<Outlet />
 				</MainContainer>
 			</main>

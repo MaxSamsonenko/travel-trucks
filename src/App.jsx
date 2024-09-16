@@ -6,7 +6,7 @@ import SharedLayout from "./components/SharedLayout/SharedLayout.jsx";
 
 const Home = lazy(() => import("./pages/Home"));
 const Catalog = lazy(() => import("./pages/Catalog"));
-const Favorites = lazy(() => import("./pages/Favorites"));
+const TruckDetails = lazy(() => import("./components/TruckDetails"));
 
 function App() {
 	return (
@@ -16,13 +16,7 @@ function App() {
 					<Route path="/" element={<SharedLayout />}>
 						<Route index element={<Home />} />
 						<Route path="catalog" element={<Catalog />} />
-						<Route path="favorites" element={<Favorites />} />
-						{/* <Route path="movies" element={<Movies />} /> */}
-						{/* <Route path="movies/:movieId" element={<MovieDetails />}> */}
-						{/* <Route path="cast" element={<Cast />} /> */}
-						{/* <Route path="reviews" element={<MovieReviews />} /> */}
-						{/* </Route> */}
-						{/* <Route path="*" element={<NotFound />} /> */}
+						<Route path="catalog/:id" element={<TruckDetails />} />
 					</Route>
 				</Routes>
 			</Suspense>

@@ -8,79 +8,107 @@ import {
 } from "./FeaturesTab.styled";
 
 import {
-	IconBtnCategoriesUsers,
 	IconBtnCategoriesAutomatic,
 	IconBtnCategoriesGas,
 	IconBtnCategoriesKitchen,
-	IconBtnCategoriesBeds,
 	IconBtnCategoriesAc,
-	IconBtnCategoriesHotelAirConditioner,
-	IconBtnCategoriesCd,
-	IconBtnCategories2Hob,
 	IconBtnCategoriesRadio,
+	IconBtnCategoriesMicrowave,
+	IconBtnCategoriesWater,
+	IconBtnCategoriesFreezer,
+	IconEquipmentShower,
+	IconEquipmentTv,
 } from "../../assets/icons";
 
 const FeaturesTab = ({ camper }) => {
+	function capitalizeFirstLetter(str) {
+		if (!str) return str;
+		return str.charAt(0).toUpperCase() + str.slice(1);
+	}
 	return (
 		<TabWrapper>
 			<div>
 				<CategoryList>
 					<li>
-						<Category>
-							<IconBtnCategoriesUsers width="20" height="20" />2 adults
-						</Category>
+						{camper?.transmission ? (
+							<Category>
+								<IconBtnCategoriesAutomatic width="20" height="20" />
+								{camper.transmission}
+							</Category>
+						) : null}
 					</li>
 					<li>
-						<Category>
-							<IconBtnCategoriesAutomatic width="20" height="20" />
-							Automatic
-						</Category>
+						{camper?.gas ? (
+							<Category>
+								<IconBtnCategoriesGas width="20" height="20" />
+								{camper.gas}Petrol
+							</Category>
+						) : null}
 					</li>
 					<li>
-						<Category>
-							<IconBtnCategoriesGas width="20" height="20" />
-							Petrol
-						</Category>
+						{camper?.kitchen ? (
+							<Category>
+								<IconBtnCategoriesKitchen width="20" height="20" />
+								{camper.kitchen}Kitchen
+							</Category>
+						) : null}
+					</li>
+
+					<li>
+						{camper?.AC ? (
+							<Category>
+								<IconBtnCategoriesAc width="20" height="20" />
+								{camper.AC}AC
+							</Category>
+						) : null}
 					</li>
 					<li>
-						<Category>
-							<IconBtnCategoriesKitchen width="20" height="20" />
-							Kitchen
-						</Category>
+						{camper?.radio ? (
+							<Category>
+								<IconBtnCategoriesRadio width="20" height="20" />
+								{camper.radio}Radio
+							</Category>
+						) : null}
 					</li>
 					<li>
-						<Category>
-							<IconBtnCategoriesBeds width="20" height="20" />1 beds
-						</Category>
+						{camper?.TV ? (
+							<Category>
+								<IconEquipmentTv width="20" height="20" />
+								{camper.TV}TV
+							</Category>
+						) : null}
 					</li>
 					<li>
-						<Category>
-							<IconBtnCategoriesAc width="20" height="20" />
-							AC
-						</Category>
+						{camper?.water ? (
+							<Category>
+								<IconBtnCategoriesWater width="20" height="20" />
+								{camper.water}Water
+							</Category>
+						) : null}
 					</li>
 					<li>
-						<Category>
-							<IconBtnCategoriesHotelAirConditioner width="20" height="20" />1
-							air conditioner
-						</Category>
+						{camper?.microwave ? (
+							<Category>
+								<IconBtnCategoriesMicrowave width="20" height="20" />
+								{camper.microwave}Microwave
+							</Category>
+						) : null}
 					</li>
 					<li>
-						<Category>
-							<IconBtnCategoriesCd width="20" height="20" />
-							CD
-						</Category>
+						{camper?.bathroom ? (
+							<Category>
+								<IconEquipmentShower width="20" height="20" />
+								{camper.bathroom}Bathroom
+							</Category>
+						) : null}
 					</li>
 					<li>
-						<Category>
-							<IconBtnCategoriesRadio width="20" height="20" />
-							Radio
-						</Category>
-					</li>
-					<li>
-						<Category>
-							<IconBtnCategories2Hob width="20" height="20" />2 hob
-						</Category>
+						{camper?.refrigerator ? (
+							<Category>
+								<IconBtnCategoriesFreezer width="20" height="20" />
+								{camper.refrigerator}Refrigerator
+							</Category>
+						) : null}
 					</li>
 				</CategoryList>
 			</div>
@@ -88,27 +116,27 @@ const FeaturesTab = ({ camper }) => {
 				<SubTitle>Vehicle details</SubTitle>
 				<Stats>
 					<StatsDetails>Form</StatsDetails>
-					<StatsDetails>Panel truck</StatsDetails>
+					<StatsDetails>{capitalizeFirstLetter(camper?.form)}</StatsDetails>
 				</Stats>
 				<Stats>
 					<StatsDetails>Length</StatsDetails>
-					<StatsDetails>5.4m</StatsDetails>
+					<StatsDetails>{camper?.length}</StatsDetails>
 				</Stats>
 				<Stats>
 					<StatsDetails>Width</StatsDetails>
-					<StatsDetails>2.01m</StatsDetails>
+					<StatsDetails>{camper?.width}</StatsDetails>
 				</Stats>
 				<Stats>
 					<StatsDetails>Height</StatsDetails>
-					<StatsDetails>2.05m</StatsDetails>
+					<StatsDetails>{camper?.height}</StatsDetails>
 				</Stats>
 				<Stats>
 					<StatsDetails>Tank</StatsDetails>
-					<StatsDetails>132I</StatsDetails>
+					<StatsDetails>{camper?.tank}</StatsDetails>
 				</Stats>
 				<Stats>
 					<StatsDetails>Consumption</StatsDetails>
-					<StatsDetails>12.4I/100km</StatsDetails>
+					<StatsDetails>{camper?.consumption}</StatsDetails>
 				</Stats>
 			</div>
 		</TabWrapper>

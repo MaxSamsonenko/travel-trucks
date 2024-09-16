@@ -1,14 +1,11 @@
+import { Container, Title, Subtitle, Button } from "./Home.styled";
 const Home = () => {
 	return (
-		<div>
-			<h1>Escape to Nature&apos;s Embrace</h1>
-			<p>
-				Ready to make memories that last a lifetime? Reserve your vehicle at
-				StarGrove Campers today and step into a world where nature’s beauty is
-				your closest companion.
-			</p>
-			<button>Start Your Adventure</button>
-		</div>
+		<Container>
+			<Title>Campers of your dreams</Title>
+			<Subtitle>You can find everything you want in our catalog</Subtitle>
+			<Button to="/catalog">View Now</Button>
+		</Container>
 	);
 };
 export default Home;

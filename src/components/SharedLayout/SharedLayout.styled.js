@@ -10,14 +10,13 @@ export const Header = styled.header`
 `;
 
 export const Nav = styled.nav`
-	background-color: #f2f4f7;
-	border-bottom: 1px solid #475467;
+	background-color: #f7f7f7;
 `;
 
 export const Container = styled.div`
 	max-width: 1440px;
 	margin: 0 auto;
-	padding: 5px 64px 5px 64px;
+	padding: 24px 64px;
 `;
 
 export const NavWrapper = styled.div`
@@ -27,10 +26,9 @@ export const NavWrapper = styled.div`
 `;
 export const LinkWrapper = styled.div`
 	display: flex;
-	justify-content: flex-end;
 	gap: 30px;
-	//   padding: 20px;
 	width: 100%;
+	margin-right: auto;
 `;
 export const Link = styled(NavLink)`
   position: relative;
@@ -42,23 +40,26 @@ export const Link = styled(NavLink)`
   }
 `;
 export const LogoLink = styled(NavLink)`
-  position: relative;
-  display: flex;
-  align-items: center;
- gap: 5px;
-  text-decoration: none;
-  color: #101828;
-  }
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	text-decoration: none;
+	color: #101828;
+	margin-right: 450px;
 `;
-export const LogoText = styled.p`
-	font-family: "Bebas Neue", sans-serif;
-	font-size: 24px;
-	font-weight: 700;
+export const LogoText = styled.span`
+	color: #475467;
 `;
 export const MainContainer = styled.div`
 	max-width: 1440px;
 	margin: 0 auto;
 	padding-left: 64px;
 	padding-right: 64px;
-	padding-top: 60px;
+	padding-top: 120px;
+	background-image: ${(props) => `url(${props.image})`};
+	background-position: top 72px left 0;
+	background-repeat: no-repeat;
+	// background-size: 100% 100%;
+	height: 100vh;
 `;

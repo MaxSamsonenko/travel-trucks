@@ -5,14 +5,15 @@ export const CatalogWrapper = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	gap: 64px;
-	padding-top: 30px;
 	padding-bottom: 30px;
 `;
 
 export const FilerFormWrapper = styled.div`
-	position: fixed;
-	top: 60px;
-	left: 142px;
+	// position: fixed;
+	// top: 60px;
+	// left: 142px;
+	top: 5vh; /* 5% from the top of the viewport */
+	// right: 10vw;
 `;
 export const CamperListWrapper = styled.div`
 	display: flex;

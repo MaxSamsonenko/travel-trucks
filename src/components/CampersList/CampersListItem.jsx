@@ -3,12 +3,12 @@ import { addFavorite, removeFavorite } from "../../redux/favoritesSlice";
 import {
 	IconHeart,
 	IconReviewStarIcon,
-	IconMapLocationIcon,
 	IconBtnCategoriesUsers,
 	IconBtnCategoriesAutomatic,
 	IconEquipmentGas,
 	IconBtnCategoriesKitchen,
 	IconBtnCategoriesAc,
+	IconMap,
 } from "../../assets/icons";
 
 import {
@@ -23,10 +23,11 @@ import {
 	CategoryList,
 	Category,
 	ShowMoreBtn,
+	LocationSpan,
 } from "./CampersList.styled";
 import { selectFavorites } from "../../redux/selectors";
 
-const CampersListItem = ({ openModal, camper }) => {
+const CampersListItem = ({ camper }) => {
 	const favorites = useSelector(selectFavorites);
 	const dispatch = useDispatch();
 	const {
@@ -96,10 +97,10 @@ const CampersListItem = ({ openModal, camper }) => {
 						<IconReviewStarIcon />
 						{rating}({reviews.length} Reviews)
 					</span>
-					<span>
-						<IconMapLocationIcon />
+					<LocationSpan>
+						<IconMap />
 						{location}
-					</span>
+					</LocationSpan>
 				</ReviewLocationWrapper>
 				<Descr>{truncateString(description, 60)}</Descr>
 
@@ -125,9 +126,7 @@ const CampersListItem = ({ openModal, camper }) => {
 						<span>AC</span>
 					</Category>
 				</CategoryList>
-				<ShowMoreBtn type="button" onClick={() => openModal(camper)}>
-					Show more
-				</ShowMoreBtn>
+				<ShowMoreBtn to={`/catalog/${id}`}>Show more</ShowMoreBtn>
 			</div>
 		</ListItem>
 	);
