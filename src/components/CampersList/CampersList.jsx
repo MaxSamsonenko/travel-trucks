@@ -1,18 +1,19 @@
 import CampersListItem from "./CampersListItem";
 
-const CampersList = ({ openModal, campers }) => {
+const CampersList = ({ campers }) => {
+	console.log(campers);
 	return (
-		<ul>
-			{campers.map((advert) => {
-				return (
-					<CampersListItem
-						openModal={() => openModal(advert)}
-						key={advert.id}
-						camper={advert}
-					/>
-				);
-			})}
-		</ul>
+		<>
+			{campers.length === 0 ? (
+				<p>No results</p>
+			) : (
+				<ul>
+					{campers.map((advert) => {
+						return <CampersListItem key={advert.id} camper={advert} />;
+					})}
+				</ul>
+			)}
+		</>
 	);
 };
 

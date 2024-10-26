@@ -21,7 +21,6 @@ import {
 
 const TruckDetailsCard = ({ truck }) => {
 	const [activeTab, setActiveTab] = useState("features");
-	console.log("details", truck);
 	const handleTabClick = (tab) => {
 		setActiveTab(tab);
 	};
@@ -72,7 +71,7 @@ const TruckDetailsCard = ({ truck }) => {
 				{activeTab === "features" ? (
 					<FeaturesTab camper={truck} />
 				) : (
-					<ReviewsTab />
+					<ReviewsTab reviews={truck.reviews} />
 				)}
 				<BookForm />
 			</TabWrapper>

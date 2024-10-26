@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import DatePicker from "react-datepicker";
 
 export const Form = styled.form`
 	width: 641px;
@@ -25,6 +26,7 @@ export const FormInput = styled.input`
 	border-radius: 10px;
 	background-color: #f7f7f7;
 	margin-bottom: 14px;
+	font-weight: 700;
 `;
 export const FormTextArea = styled.textarea`
 	border: none;
@@ -44,12 +46,13 @@ export const FormBtn = styled.button`
 	border-radius: 200px;
 	margin: 0 auto;
 `;
-export const StyledDateInput = styled(FormInput)`
+export const StyledDateInput = styled(DatePicker)`
+	width: 100%;
 	border: none;
 	outline: none;
 	padding: 18px;
 	border-radius: 10px;
 	background-color: #f7f7f7;
+	color: #000000;
 	margin-bottom: 14px;
-	color: ${(props) => (props.hasValue ? "black" : "#ccc")};
 `;

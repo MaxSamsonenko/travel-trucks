@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAdverts, fetchAdvertById } from "./operations";
+import {
+	fetchAdverts,
+	fetchAdvertById,
+	fetchAdvertsBasedOnFilters,
+} from "./operations";
 
 const advertsInitialState = {
 	items: [],
+	filteredAdverts: [],
 	currentAdvert: null,
 	totalItems: 0,
+	totalFilteredItems: 0,
 	isLoading: false,
 	error: null,
 };
@@ -37,7 +43,19 @@ const advertsSlice = createSlice({
 				state.error = null;
 				state.currentAdvert = action.payload;
 			})
-			.addCase(fetchAdvertById.rejected, handleRejected);
+			.addCase(fetchAdvertById.rejected, handleRejected)
+			.addCase(fetchAdvertsBasedOnFilters.pending, handlePending)
+			.addCase(fetchAdvertsBasedOnFilters.fulfilled, (state, action) => {
+				console.log(action);
+				state.isLoading = false;
+				state.error = null;
+				state.filteredAdverts = action.payload.items;
+				state.totalFilteredItems = action.payload.total;
+			})
+			.addCase(fetchAdvertsBasedOnFilters.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload || "No content";
+			});
 	},
 });
 export const advertsReducer = advertsSlice.reducer;

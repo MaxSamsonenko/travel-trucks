@@ -9,7 +9,7 @@ const favoriteSlice = createSlice({
 		addFavorite(state, action) {
 			const advert = action.payload;
 			console.log(advert);
-			// Check for duplicates
+
 			if (!state.some((item) => item.id === advert.id)) {
 				state.push(advert);
 			}

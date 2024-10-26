@@ -1,4 +1,12 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAdvertsBasedOnFilters } from "../../redux/operations";
+import {
+	setLocation,
+	toggleEquipment,
+	setVehicleType,
+	resetFilters,
+} from "../../redux/filterSlice";
+import { selectFilters } from "../../redux/selectors";
 import Checkbox from "./Checkbox";
 import { IconMapLocationIcon } from "../../assets/icons";
 
@@ -18,43 +26,61 @@ import {
 	SubmitBtn,
 } from "./FilterForm.styled";
 
-const FilterForm = () => {
-	const [checkboxStates, setCheckboxStates] = useState(
-		new Array(5).fill(false)
-	);
-	const [vehicleType, setVehicleType] = useState("");
+const FilterForm = ({ onSubmit }) => {
+	const dispatch = useDispatch();
+	const filters = useSelector(selectFilters);
 
 	const handleCheckboxChange = (index) => {
-		const newCheckboxStates = [...checkboxStates];
-		newCheckboxStates[index] = !newCheckboxStates[index];
-		setCheckboxStates(newCheckboxStates);
+		dispatch(toggleEquipment(index));
 	};
 	const handleRadioChange = (event) => {
-		setVehicleType(event.target.value);
+		const vehicle = vehicleTypeIcons.find((item) => {
+			if (item.name === event.target.value) {
+				return item;
+			}
+		});
+		if (vehicle) {
+			dispatch(setVehicleType(vehicle.value));
+		}
 	};
-
+	const handleLocationChange = (event) => {
+		dispatch(setLocation(event.target.value));
+	};
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		dispatch(fetchAdvertsBasedOnFilters());
+		onSubmit();
+		dispatch(resetFilters());
+	};
 	return (
-		<Form>
+		<Form onSubmit={handleSubmit}>
 			<LocationLabel name="location">Location</LocationLabel>
 			<InputWrapper>
 				<IconWrapper>
 					<IconMapLocationIcon />
 				</IconWrapper>
-				<LocationInput type="text" placeholder="Kyiv, Ukraine" />
+				<LocationInput
+					type="text"
+					placeholder="Kyiv, Ukraine"
+					onChange={handleLocationChange}
+				/>
 			</InputWrapper>
 
 			<Filters>Filters</Filters>
 			<div>
 				<SubTitle>Vehicle equipment</SubTitle>
 				<CheckBoxList>
-					{checkboxStates.map((checked, index) => (
+					{equipmentIcons.map((item, index) => (
 						<CheckBoxListItem key={index}>
 							<Checkbox
-								name={equipmentIcons[index].name}
+								name={item.name}
 								type="checkbox"
-								checked={checked}
-								onChange={() => handleCheckboxChange(index)}
-								IconComponent={equipmentIcons[index].iconComponent}
+								value={item.name}
+								checked={filters.equipment[index]}
+								onChange={() => {
+									handleCheckboxChange(index);
+								}}
+								IconComponent={item.iconComponent}
 							/>
 						</CheckBoxListItem>
 					))}
@@ -63,47 +89,21 @@ const FilterForm = () => {
 			<div>
 				<SubTitle>Vehicle Type</SubTitle>
 				<CheckBoxList>
-					{/* <Label htmlFor="van">Van</Label> */}
-					<CheckBoxListItem>
-						<Label>
-							<Checkbox
-								id="van"
-								type="radio"
-								name="vehicleType"
-								value="van"
-								checked={vehicleType === "van"}
-								onChange={handleRadioChange}
-								IconComponent={vehicleTypeIcons[0].iconComponent}
-							/>
-						</Label>
-					</CheckBoxListItem>
-
-					{/* <Label htmlFor="fully-intergrated">Fully Integrated</Label> */}
-					<Label>
-						<Checkbox
-							id="fully-intergrated"
-							type="radio"
-							name="vehicleType"
-							value="fully-integrated"
-							checked={vehicleType === "fully-integrated"}
-							onChange={handleRadioChange}
-							padding="true"
-							IconComponent={vehicleTypeIcons[1].iconComponent}
-						/>
-					</Label>
-
-					{/* <Label htmlFor="alcove">Alcove</Label> */}
-					<Label>
-						<Checkbox
-							id="alcove"
-							type="radio"
-							name="vehicleType"
-							value="alcove"
-							checked={vehicleType === "alcove"}
-							onChange={handleRadioChange}
-							IconComponent={vehicleTypeIcons[2].iconComponent}
-						/>
-					</Label>
+					{vehicleTypeIcons.map((item, index) => (
+						<CheckBoxListItem key={index}>
+							<Label>
+								<Checkbox
+									id={item.value}
+									type="radio"
+									name="vehicleType"
+									value={item.name}
+									checked={filters.form === item.value}
+									onChange={handleRadioChange}
+									IconComponent={item.iconComponent}
+								/>
+							</Label>
+						</CheckBoxListItem>
+					))}
 				</CheckBoxList>
 			</div>
 			<SubmitBtn type="submit">Search</SubmitBtn>
