@@ -1,7 +1,6 @@
 import CampersListItem from "./CampersListItem";
 
 const CampersList = ({ campers }) => {
-	console.log(campers);
 	return (
 		<>
 			{campers.length === 0 ? (

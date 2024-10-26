@@ -31,13 +31,15 @@ export const LinkWrapper = styled.div`
 	margin-right: auto;
 `;
 export const Link = styled(NavLink)`
-  position: relative;
-  display: flex;
-  align-items: center;
- 
-  text-decoration: none;
-  color: #101828;
-  }
+	position: relative;
+	display: flex;
+	align-items: center;
+
+	text-decoration: none;
+	color: #101828;
+	&.active {
+		color: rgba(216, 67, 67, 1);
+	}
 `;
 export const LogoLink = styled(NavLink)`
 	position: relative;

@@ -17,6 +17,7 @@ import herobcg from "../../assets/hero/hero-background.png";
 
 const SharedLayout = () => {
 	const location = useLocation();
+	console.log(location);
 	return (
 		<div>
 			<Header>
